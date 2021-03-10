@@ -7,7 +7,7 @@ import {view,store} from '@risingstack/react-easy-state';
 function getFormatDateTime(){
     return moment()
     .utc()
-    .format('hh:mm:ss A');
+    .format('yy-dd- hh:mm:ss A');
 }
 
 export default view(() => {
