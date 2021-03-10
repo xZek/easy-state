@@ -2,7 +2,6 @@ import React from 'react';
 import{ view } from '@risingstack/react-easy-state';
 import appStore from './appStore';
 import Beer from './Beer';
-import { Col, Row } from 'antd';
 
 const BeerList = () => (
     <div className="beerlist">
