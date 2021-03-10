@@ -1,4 +1,4 @@
-//  chronometer
+//  StopWatch
 
 
 import React from 'react';
