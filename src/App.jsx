@@ -1,102 +1,14 @@
-//  StopWatch
-
-
 import React from 'react';
-import {view} from '@risingstack/react-easy-state';
-import clock from './Clock';
-
-export default view(() => {
-    const {time,toggle,reset,isTicking} = clock;
-    const label = isTicking ? 'Durdur' : 'Başlat';
-
-    return(
-        <div>
-            <div>
-                {time.seconds}
-                <small>{time.fraction}</small>
-            </div>
-            <button onClick={toggle}>{label}</button>
-            <button onClick={reset}>Reset</button>
-        </div>
-    );
-});
+import NavBar from './Navbar';
+import BeerList from './comp/BeerList';
 
 
 
 
-
-/*
-
-//Test 1
-
-import React from 'react';
-import {view,store} from '@risingstack/react-easy-state'
-
-const user = store({ name : 'Zek'});
-
-export default view(() =>(
-
-<div>
-    <input value={user.name} 
-           onChange={ev => (user.name = ev.target.value)}
-    />
-    <p>Merhaba {user.name}</p>
-
-</div>
-
-
-
-    )
-
-);
-
-
-
-// Test 2
-
-import React from 'react';
-import { view, store } from '@risingstack/react-easy-state';
-
-
-function GetButton(){
-    
-const counter= store({ num : 0});
-const increment = () => counter.num++;
-
-return  <button onClick={increment}>{counter.num}</button>
-
+export default () => (
+    <>
+      <NavBar />
+      <BeerList />
+    </>
+  );
   
-}
-
-export default view(GetButton);
-
-/*
-
-//Realtime Clock Test  -- Test3
-
-import React, { useEffect } from 'react';
-import moment  from 'moment';
-import {view,store} from '@risingstack/react-easy-state';
-
-function getFormatDateTime(){
-    return moment()
-    .utc()
-    .format('yy-dd- hh:mm:ss A');
-}
-
-export default view(() => {
-    const clock = store({
-        time:getFormatDateTime()
-    });
-    useEffect(() => {
-    const id = setInterval(
-        () => (clock.time = getFormatDateTime()),
-        1000,
-    );
-    return () => clearInterval(id);
-        }, []);
-        return <div>{clock.time}</div>
-});
-
-
-*/
