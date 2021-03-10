@@ -1,28 +1,28 @@
-//Clock Test  -- Test3
+//  chronometer
 
-import React, { useEffect } from 'react';
-import moment  from 'moment';
-import {view,store} from '@risingstack/react-easy-state';
 
-function getFormatDateTime(){
-    return moment()
-    .utc()
-    .format('yy-dd- hh:mm:ss A');
-}
+import React from 'react';
+import {view} from '@risingstack/react-easy-state';
+import clock from './Clock';
 
 export default view(() => {
-    const clock = store({
-        time:getFormatDateTime()
-    });
-    useEffect(() => {
-    const id = setInterval(
-        () => (clock.time = getFormatDateTime()),
-        1000,
+    const {time,toggle,reset,isTicking} = clock;
+    const label = isTicking ? 'Durdur' : 'Başlat';
+
+    return(
+        <div>
+            <div>
+                {time.seconds}
+                <small>{time.fraction}</small>
+            </div>
+            <button onClick={toggle}>{label}</button>
+            <button onClick={reset}>Reset</button>
+        </div>
     );
-    return () => clearInterval(id);
-        }, []);
-        return <div>{clock.time}</div>
 });
+
+
+
 
 
 /*
@@ -69,4 +69,34 @@ return  <button onClick={increment}>{counter.num}</button>
 }
 
 export default view(GetButton);
+
+/*
+
+//Realtime Clock Test  -- Test3
+
+import React, { useEffect } from 'react';
+import moment  from 'moment';
+import {view,store} from '@risingstack/react-easy-state';
+
+function getFormatDateTime(){
+    return moment()
+    .utc()
+    .format('yy-dd- hh:mm:ss A');
+}
+
+export default view(() => {
+    const clock = store({
+        time:getFormatDateTime()
+    });
+    useEffect(() => {
+    const id = setInterval(
+        () => (clock.time = getFormatDateTime()),
+        1000,
+    );
+    return () => clearInterval(id);
+        }, []);
+        return <div>{clock.time}</div>
+});
+
+
 */
